@@ -48,17 +48,17 @@ E(r_1, r_2) = \frac{|r_1 \cap r_2|}{\max(|r_1|, |r_2|)}
 
 \begin{table}[h]
 \centering
-\caption{Route Cost Comparison}
+\caption{Route Cost Comparison (20 nodes)}
 \begin{tabular}{lcc}
 \toprule
-Nodes & Quantum & Classical \\
+Method & Cost & Routes Found \\
 \midrule
-10 & 3.2 & 4.1 \\
-20 & 5.8 & 7.3 \\
-50 & 12.1 & 15.6 \\
-100 & 24.3 & 31.2 \\
+Quantum-Inspired & 4.0 & 5 \\
+Classical Dijkstra & 2.0 & 1 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+The quantum-inspired optimizer discovers 5 alternative routes through superposition exploration, providing redundancy and fault tolerance. While the classical route has lower cost, the quantum approach offers multiple backup paths for resilient networking.
 
 \end{document}
