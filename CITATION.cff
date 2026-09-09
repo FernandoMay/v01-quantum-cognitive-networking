@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "Quantum-Inspired Cognitive Networking for Adaptive AI-Native 6G Infrastructure"
+message: "If you use this artifact, cite the paper and software package."
+type: software
+authors:
+  - family-names: Fuentes
+    given-names: "Fernando May"
+    orcid: "https://orcid.org/0009-0002-3953-5224"
+repository-code: "https://github.com/FernandoMay/v01-quantum-cognitive-networking"
+license: MIT
+date-released: 2026-09-09

@@ -12,11 +12,12 @@
   \country{M\'{e}xico}
 }
 \email{fmayf1500@alumno.ipn.mx}
+\thanks{ORCID: \href{https://orcid.org/0009-0002-3953-5224}{0009-0002-3953-5224}.}
 
 \begin{document}
 
 \begin{abstract}
-AI-native 6G networks require adaptive routing that can explore multiple path configurations simultaneously. This paper proposes a quantum-inspired cognitive networking framework that applies superposition-inspired exploration and entanglement-inspired correlation to adaptive routing in 6G networks. Our approach maintains multiple candidate routes in superposition and uses amplitude-based probability selection to discover optimal paths. Experimental results demonstrate 15-22\% cost reduction compared to classical Dijkstra routing across network scales of 10-100 nodes.
+AI-native 6G networks require routing policies that can expose alternative paths under changing conditions. This paper presents a quantum-inspired route-search heuristic based on amplitude and phase scores. In the current 20-node synthetic run, the heuristic returned five candidate routes and a best-path cost of 4.0, while the classical Dijkstra baseline returned one path with cost 2.0. Thus, the current artifact demonstrates route diversity, not cost improvement; the earlier 15--22\% improvement claim is withdrawn.
 \end{abstract}
 
 \keywords{quantum-inspired, cognitive networking, 6G, adaptive routing, AI-native}
@@ -25,7 +26,11 @@ AI-native 6G networks require adaptive routing that can explore multiple path co
 
 \section{Introduction}
 
-Classical routing algorithms explore paths sequentially, missing potentially optimal routes. Quantum-inspired approaches maintain superposition of multiple candidates, enabling parallel exploration of the solution space.
+Classical routing algorithms optimize a scalar path objective. The proposed heuristic maintains several candidate paths, but the implementation is a quantum-inspired metaphor and does not execute on quantum hardware or simulate a quantum circuit.
+
+\section{Related Work}
+
+Quantum-inspired evolutionary algorithms represent candidate solutions with amplitudes or phase-like parameters and update them using classical arithmetic. This is distinct from quantum routing and from claims of quantum speedup. The appropriate comparison is a matched classical multi-path method on the same graph, which is left for the next artifact revision.
 
 \section{Methodology}
 
@@ -37,6 +42,10 @@ P(j|i) = |A_{ij}|^2 \cdot (1 + \cos(\phi_{ij}))
 \end{equation}
 
 where $A_{ij}$ is the amplitude and $\phi_{ij}$ is the phase between nodes $i$ and $j$.
+
+\section{Experimental Protocol}
+
+The seeded experiment uses 20 nodes, source 0, destination 19, five candidate routes, and NumPy seed 20260909. The classical route is computed by Dijkstra over a randomly generated symmetric distance matrix. The quantum-inspired heuristic uses a separate amplitude matrix; reported costs are therefore descriptive rather than a controlled superiority comparison.
 
 \subsection{Entanglement Correlation}
 
@@ -53,12 +62,26 @@ E(r_1, r_2) = \frac{|r_1 \cap r_2|}{\max(|r_1|, |r_2|)}
 \toprule
 Method & Cost & Routes Found \\
 \midrule
-Quantum-Inspired & 4.0 & 5 \\
+Quantum-Inspired & 20.0 & 5 \\
 Classical Dijkstra & 2.0 & 1 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The quantum-inspired optimizer discovers 5 alternative routes through superposition exploration, providing redundancy and fault tolerance. While the classical route has lower cost, the quantum approach offers multiple backup paths for resilient networking.
+The quantum-inspired optimizer discovered five candidate routes. The best candidate cost was 20.0, compared with 2.0 for the classical baseline; therefore it is inferior on the current cost objective. Its potential value is route diversity, which requires a separate failure-recovery experiment before any resilience claim can be made.
+
+\section{Limitations and Threats to Validity}
+
+The current graph is randomly generated, the optimizer does not enforce a physical neighbor topology, and no repeated-seed confidence intervals or link-failure trials are included. The result should be treated as a heuristic baseline, not as evidence of quantum advantage.
+
+\section{Conclusion}
+
+The artifact demonstrates candidate-route generation but does not demonstrate lower routing cost. The next defensible experiment requires a common graph, repeated seeds, matched objectives, link-failure injection, and a classical multi-path baseline.
+
+\begin{thebibliography}{99}
+\bibitem{han} K.-H. Han and J.-H. Kim, ``Quantum-inspired evolutionary algorithm for a class of combinatorial optimization,'' \emph{IEEE Transactions on Evolutionary Computation}, 2002.
+\bibitem{dijkstra} E. W. Dijkstra, ``A note on two problems in connexion with graphs,'' \emph{Numerische Mathematik}, 1959.
+\bibitem{saad} W. Saad, M. Bennis, and M. Chen, ``A vision of 6G wireless systems,'' \emph{IEEE Network}, 2020.
+\end{thebibliography}
 
 \end{document}
